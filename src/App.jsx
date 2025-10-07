@@ -59,52 +59,28 @@ const tech = [
 const projects = [
   {
     title_pt: "Coomb – IA para Currículos",
-    title_en: "Coomb – AI-Powered Résumé Builder",
+    title_en: "Coomb – AI‑Powered Résumé Builder",
     tag_pt: "SaaS • IA • PDFs",
     tag_en: "SaaS • AI • PDFs",
     blurb_pt:
       "SaaS que gera CVs personalizados com IA (OpenAI/Groq), seleção de temas, exportação em PDF e otimização baseada na vaga.",
     blurb_en:
-      "SaaS that creates tailored résumés with AI (OpenAI/Groq), theme picker, PDF export and job-aware optimization.",
-    bullets_pt: [
-      "Next.js + API Routes",
-      "Fila de jobs",
-      "Stripe (assinaturas)",
-      "MongoDB",
-      "+50 usuários, 13 assinantes (beta)",
-    ],
-    bullets_en: [
-      "Next.js + API Routes",
-      "Job queue",
-      "Stripe (subscriptions)",
-      "MongoDB",
-      "+50 users, 13 subscribers (beta)",
-    ],
+      "SaaS that creates tailored résumés with AI (OpenAI/Groq), theme picker, PDF export and job‑aware optimization.",
+    bullets_pt: ["Next.js + API Routes", "Fila de jobs", "Stripe (assinaturas)", "MongoDB"],
+    bullets_en: ["Next.js + API Routes", "Job queue", "Stripe (subscriptions)", "MongoDB"],
     links: { live: "#", repo: "#" },
   },
   {
-    title_pt: "E-commerce React + Checkout API",
-    title_en: "React E-commerce + Checkout API",
+    title_pt: "E‑commerce React + Checkout API",
+    title_en: "React E‑commerce + Checkout API",
     tag_pt: "Web App • Front/Back",
     tag_en: "Web App • Front/Back",
     blurb_pt:
       "Página de produto dinâmica (Pexels API para imagens), carrinho em localStorage e envio de pedidos via API de checkout.",
     blurb_en:
       "Dynamic product page (Pexels API), cart via localStorage and order submission to a checkout API.",
-    bullets_pt: [
-      "React + Zustand",
-      "Pexels API",
-      "Checkout REST",
-      "Testes de integração",
-      "LocalStorage cart + persistência",
-    ],
-    bullets_en: [
-      "React + Zustand",
-      "Pexels API",
-      "Checkout REST",
-      "Integration tests",
-      "LocalStorage cart + persistence",
-    ],
+    bullets_pt: ["React + Zustand", "Pexels API", "Checkout REST", "Testes de integração"],
+    bullets_en: ["React + Zustand", "Pexels API", "Checkout REST", "Integration tests"],
     links: { live: "#", repo: "#" },
   },
   {
@@ -116,18 +92,8 @@ const projects = [
       "Automação de processos críticos com integrações REST, painéis analíticos e orquestração de workflows.",
     blurb_en:
       "Process automation with REST integrations, analytical dashboards and workflow orchestration.",
-    bullets_pt: [
-      "Fluig + Scripts",
-      "Integração REST",
-      "KPIs em tempo real",
-      "Workflows orquestrados",
-    ],
-    bullets_en: [
-      "Fluig + Scripts",
-      "REST integration",
-      "Realtime KPIs",
-      "Orchestrated workflows",
-    ],
+    bullets_pt: ["Fluig + Scripts", "Integração REST", "KPIs em tempo real"],
+    bullets_en: ["Fluig + Scripts", "REST integration", "Realtime KPIs"],
     links: { live: "#", repo: "#" },
   },
 ];
@@ -163,77 +129,195 @@ const services = [
 
 // Experiências (expandido)
 const experiences = [
+  // ───────────────────────────────────────────
+  // FREELANCE (atual)
   {
-    when_pt: "2025 → hoje",
-    when_en: "2025 → present",
-    role_pt: "Founder / Full-Stack – Coomb (SaaS de Currículos com IA)",
-    role_en: "Founder / Full-Stack – Coomb (AI Résumé SaaS)",
-    org: "Produto próprio",
+    when_pt: "jun/2025 → hoje",
+    when_en: "Jun/2025 → present",
+    role_pt: "Desenvolvedor · Freelance",
+    role_en: "Developer · Freelance",
+    org: "Autônomo",
     points_pt: [
-      "Arquitetura e desenvolvimento end-to-end (Next.js, Node, MongoDB)",
-      "Integração com modelos de IA (OpenAI/Groq) e prompt-engineering",
-      "Cobrança recorrente com Stripe e métricas de produto",
-      "+50 usuários e 13 assinantes no beta",
+      "Projetos full-stack (React/Node) com TypeScript",
+      "Testes ágeis e automação básica (Jest/RTL)",
+      "Integração com bancos NoSQL e SQL",
+      "Bundling/otimização com Webpack e Vite",
+      "Suporte multi-SO e ambientes de deploy",
     ],
     points_en: [
-      "End-to-end architecture and development (Next.js, Node, MongoDB)",
-      "AI model integrations (OpenAI/Groq) and prompt engineering",
-      "Recurring billing with Stripe and product analytics",
-      "+50 users and 13 subscribers in beta",
+      "Full-stack projects (React/Node) with TypeScript",
+      "Agile testing and basic automation (Jest/RTL)",
+      "NoSQL and SQL database integrations",
+      "Bundling/optimizations with Webpack & Vite",
+      "Multi-OS support and deployment environments",
     ],
   },
+
+  // ───────────────────────────────────────────
+  // HMTJ
   {
-    when_pt: "2024 → 2025",
-    when_en: "2024 → 2025",
-    role_pt: "Full-Stack – E-commerce React + APIs",
-    role_en: "Full-Stack – React E-commerce + APIs",
-    org: "Projetos autorais e consultoria",
+    when_pt: "jun/2024 → mai/2025",
+    when_en: "Jun/2024 → May/2025",
+    role_pt: "Analista de desenvolvimento de software",
+    role_en: "Software Development Analyst",
+    org: "Hospital e Maternidade Therezinha de Jesus (HMTJ) · Presencial · Juiz de Fora/MG",
     points_pt: [
-      "Catálogo dinâmico com imagens via Pexels e estado com Zustand",
-      "Carrinho persistido (localStorage) e checkout REST",
-      "Testes de integração e integração CI/CD",
+      "Interfaces responsivas com React.js, Redux e Tailwind (+35% UX mobile)",
+      "APIs RESTful com Node.js/Express em microsserviços",
+      "MongoDB/MySQL modelados e otimizados (−20% no tempo de resposta)",
+      "Testes automatizados (Jest, React Testing Library) com >90% cobertura",
+      "Automação de processos em Python (+25% produtividade)",
+      "CI/CD com GitHub Actions e GitLab",
+      "Integrações TOTVS Fluig (API/Workflows) · Stack: Fluig, Eclipse, Bootstrap, SQL Server",
     ],
     points_en: [
-      "Dynamic catalog with Pexels images and Zustand state",
-      "Persisted cart (localStorage) and REST checkout",
-      "Integration tests and CI/CD integration",
+      "Responsive UIs with React.js, Redux, Tailwind (+35% mobile UX)",
+      "RESTful APIs with Node.js/Express (microservices)",
+      "MongoDB/MySQL modeled & tuned (−20% response time)",
+      "Automated tests (Jest, RTL) with >90% coverage",
+      "Python process automation (+25% productivity)",
+      "CI/CD using GitHub Actions & GitLab",
+      "TOTVS Fluig integrations (API/Workflows) · Stack: Fluig, Eclipse, Bootstrap, SQL Server",
     ],
   },
+
+  // ───────────────────────────────────────────
+  // FREELANCE (jan–mai/2024)
   {
-    when_pt: "2022 → 2024",
-    when_en: "2022 → 2024",
-    role_pt: "Dev Full-Stack – Automação Fluig (TOTVS)",
-    role_en: "Full-Stack Dev – Fluig (TOTVS) Automation",
-    org: "Consultoria",
+    when_pt: "jan/2024 → mai/2024",
+    when_en: "Jan/2024 → May/2024",
+    role_pt: "Desenvolvedor · Freelance",
+    role_en: "Developer · Freelance",
+    org: "Autônomo",
     points_pt: [
-      "Automação de processos críticos e integrações REST",
-      "Dashboards de indicadores e scripts para workflows",
-      "Adoção de boas práticas de observabilidade",
+      "Landing pages e SPAs responsivas (React + TS)",
+      "Boas práticas de testes ágeis",
+      "Modelagem simples em NoSQL",
+      "Ajustes de Webpack e performance",
     ],
     points_en: [
-      "Critical process automation and REST integrations",
-      "KPI dashboards and workflow scripting",
-      "Adoption of observability best practices",
+      "Responsive landing pages & SPAs (React + TS)",
+      "Agile testing practices",
+      "Light NoSQL modeling",
+      "Webpack tweaks and performance tuning",
     ],
   },
+
+  // ───────────────────────────────────────────
+  // DELAGE
   {
-    when_pt: "2019 → 2022",
-    when_en: "2019 → 2022",
-    role_pt: "Full-Stack (React/Node)",
-    role_en: "Full-Stack (React/Node)",
-    org: "Projetos diversos",
+    when_pt: "jan/2023 → dez/2023",
+    when_en: "Jan/2023 → Dec/2023",
+    role_pt: "Analista de sistemas",
+    role_en: "Systems Analyst",
+    org: "Delage · Remoto · Juiz de Fora/MG",
     points_pt: [
-      "Microsserviços, Docker e pipelines CI/CD",
-      "Automação com Selenium e Puppeteer",
-      "Integrações REST/GraphQL, bancos SQL/NoSQL",
+      "Otimização de consultas e índices (−30% tempo de execução)",
+      "Migração de bancos legados para plataformas modernas",
+      "Relatórios automatizados com SSRS (−50% no tempo de geração)",
+      "Adoção de práticas ágeis (+20% eficiência de entrega)",
+      "T-SQL, Oracle SQL Developer e SQL Server Management Studio",
+      "Integrações com WMS e automações de dados",
     ],
     points_en: [
-      "Microservices, Docker and CI/CD pipelines",
-      "Automation with Selenium and Puppeteer",
-      "REST/GraphQL integrations, SQL/NoSQL databases",
+      "Query & index optimization (−30% runtime)",
+      "Legacy DB migration to modern stacks",
+      "Automated reporting with SSRS (−50% build time)",
+      "Agile practices adoption (+20% delivery efficiency)",
+      "T-SQL, Oracle SQL Developer, SQL Server Management Studio",
+      "WMS integrations and data automations",
+    ],
+  },
+
+  // ───────────────────────────────────────────
+  // FREELANCE WEB (2021–2023)
+  {
+    when_pt: "fev/2021 → jan/2023",
+    when_en: "Feb/2021 → Jan/2023",
+    role_pt: "Freelance Web Developer",
+    role_en: "Freelance Web Developer",
+    org: "Autônomo",
+    points_pt: [
+      "Apps web com React.js e mobile com React Native",
+      "UIs dinâmicas com HTML/CSS/JS e design responsivo",
+      "Integração de APIs e versionamento com Git/GitHub",
+      "Portfólio de repositórios: github.com/samuelbatista3rios",
+    ],
+    points_en: [
+      "Web apps with React.js and mobile with React Native",
+      "Dynamic UIs with HTML/CSS/JS and responsive design",
+      "API integrations and versioning with Git/GitHub",
+      "Repos: github.com/samuelbatista3rios",
+    ],
+  },
+
+  // ───────────────────────────────────────────
+  // MZTECH
+  {
+    when_pt: "fev/2021 → fev/2022",
+    when_en: "Feb/2021 → Feb/2022",
+    role_pt: "Desenvolvedor Full-Stack",
+    role_en: "Full-Stack Developer",
+    org: "MzTech – Sites e Aplicativos · Presencial",
+    points_pt: [
+      "Performance: −40% tempo de carregamento, +25% responsividade",
+      "APIs escaláveis com Node.js/Express",
+      "Integração com AWS (EC2, S3, RDS)",
+      "Frontend com React + TypeScript + Redux",
+      "PostgreSQL e MongoDB · manutenção e evolução de sistemas",
+    ],
+    points_en: [
+      "Performance: −40% load time, +25% responsiveness",
+      "Scalable APIs with Node.js/Express",
+      "AWS integrations (EC2, S3, RDS)",
+      "Frontend with React + TypeScript + Redux",
+      "PostgreSQL and MongoDB · maintenance & evolution",
+    ],
+  },
+
+  // ───────────────────────────────────────────
+  // SUPORTE TÉCNICO
+  {
+    when_pt: "set/2020 → set/2021",
+    when_en: "Sep/2020 → Sep/2021",
+    role_pt: "Auxiliar de suporte técnico",
+    role_en: "Technical Support Assistant",
+    org: "Três Rios/RJ · Presencial",
+    points_pt: [
+      "Atendimento a usuários (remoto/presencial) e registro de chamados",
+      "Instalação e configuração de softwares/hardwares",
+      "Documentação técnica básica do ambiente de TI",
+    ],
+    points_en: [
+      "User support (remote/on-site) and ticket logging",
+      "Software/hardware install & configuration",
+      "Basic technical documentation for the IT environment",
+    ],
+  },
+
+  // ───────────────────────────────────────────
+  // IRONHACK (formação aplicada como experiência)
+  {
+    when_pt: "2020 → 2021",
+    when_en: "2020 → 2021",
+    role_pt: "Desenvolvedor Full-Stack · Aprendiz",
+    role_en: "Full-Stack Developer · Trainee",
+    org: "Ironhack",
+    points_pt: [
+      "HTML, CSS, JavaScript no dia a dia",
+      "Express (back-end) e React (front-end)",
+      "Git e GitHub · APIs REST",
+      "Metodologias ágeis",
+    ],
+    points_en: [
+      "Daily HTML, CSS, JavaScript",
+      "Express (back end) and React (front end)",
+      "Git & GitHub · REST APIs",
+      "Agile methodologies",
     ],
   },
 ];
+
 
 // i18n (textos PT/EN + href do CV por idioma)
 const i18n = {
@@ -259,7 +343,7 @@ const i18n = {
     },
     about: {
       title: "Sobre",
-      desc: "Com 4+ anos como Full-Stack, entrego produtos web e mobile com foco em performance, escalabilidade e visão de produto.",
+      desc: "Com mais de 4 anos como Desenvolvedor, entrego produtos web e mobile com foco em performance, escalabilidade e visão de produto.",
       highlights: [
         "Frontend: React, TypeScript, Next.js",
         "Backend: Node.js (Express/Nest), Python",
@@ -539,7 +623,7 @@ export default function PortfolioSamuel() {
             <div className="mt-6 flex items-center gap-4 text-sm text-neutral-400">
               <span className="flex items-center gap-1">
                 <Phone className="w-4 h-4" />{" "}
-                <a href={socials.phone}>+55 xx xxxx-xxxx</a>
+                <a href={socials.phone}>+55 24 99226-0913</a>
               </span>
               <span className="flex items-center gap-1">
                 <MapPin className="w-4 h-4" /> {t.hero.phoneLabel}
@@ -558,7 +642,7 @@ export default function PortfolioSamuel() {
                 <CardContent className="p-6">
                   <div className="aspect-video w-full rounded-2xl overflow-hidden bg-neutral-800">
                     <img
-                      src="/Code.png"
+                      src="./Code.png"
                       alt="Preview de projetos de desenvolvimento"
                       className="w-full h-full object-cover"
                     />
