@@ -2,7 +2,116 @@
 @tailwind components;
 @tailwind utilities;
 
-/* reset e full-bleed */
-html, body, #root { height: 100%; }
-body { margin: 0; background: #0a0a0a; } /* fallback caso o gradiente não pegue */
-#root { width: 100%; max-width: none; padding: 0; }
+/* ── base reset & smooth scroll ───────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  margin: 0;
+  background: #030303;
+}
+#root {
+  width: 100%;
+  max-width: none;
+  padding: 0;
+}
+
+/* ── custom scrollbar ─────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3a3a3a;
+}
+
+/* light mode scrollbar */
+html:not(.dark) ::-webkit-scrollbar-thumb {
+  background: #ccc;
+}
+html:not(.dark) ::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
+}
+
+/* ── selection color ──────────────────────────────────────────────────────── */
+::selection {
+  background: rgba(16, 185, 129, 0.25);
+}
+
+/* ── utility layer ────────────────────────────────────────────────────────── */
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-emerald-400 via-cyan-400 to-sky-400 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-subtle {
+    @apply bg-gradient-to-r from-emerald-300 to-cyan-300 bg-clip-text text-transparent;
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-light {
+    background: rgba(0, 0, 0, 0.03);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
+  }
+
+  .glow-emerald {
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.15);
+  }
+
+  .glow-emerald-sm {
+    box-shadow: 0 0 12px rgba(16, 185, 129, 0.2);
+  }
+
+  .timeline-line::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 24px;
+    bottom: -24px;
+    width: 1px;
+    background: linear-gradient(
+      to bottom,
+      rgba(16, 185, 129, 0.4),
+      rgba(16, 185, 129, 0.05)
+    );
+  }
+}
+
+/* ── admin panel smooth slide ─────────────────────────────────────────────── */
+.admin-overlay {
+  animation: fadeIn 0.2s ease;
+}
+
+/* ── noise texture overlay (subtle premium feel) ─────────────────────────── */
+.noise::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  z-index: 9999;
+}
