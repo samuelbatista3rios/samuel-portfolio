@@ -1256,6 +1256,13 @@ export default function App() {
     localStorage.setItem(DATA_KEY, JSON.stringify(newData));
     await savePortfolioData(newData);
   }, []);
+
+  const handleHashChange = useCallback(async (newHash) => {
+    const newData = { ...data, __adminHash: newHash };
+    setData(newData);
+    localStorage.setItem(DATA_KEY, JSON.stringify(newData));
+    await savePortfolioData(newData);
+  }, [data]);
  
   const t = i18n[lang];
 
@@ -1287,6 +1294,8 @@ export default function App() {
               defaultData={DEFAULT_DATA}
               onSave={saveData}
               onClose={() => setShowAdmin(false)}
+              adminHash={data.__adminHash}
+              onHashChange={handleHashChange}
             />
           )}
         </AnimatePresence>

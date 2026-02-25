@@ -46,12 +46,7 @@ function encodePass(p) {
   }
 }
 
-const HASH_KEY = "samuel.adminHash";
-const DEFAULT_HASH = "c2FtdWVsQGFkbTIwMjU="; // btoa('samuel@adm2025')
-
-function getStoredHash() {
-  return localStorage.getItem(HASH_KEY) || DEFAULT_HASH;
-}
+const DEFAULT_HASH = "c2FtdWVsQGFkbTIwMjU="; // btoa('samuel@adm2025') — senha padrão
 
 // ─── small shared ui ─────────────────────────────────────────────────────────
 const Input = ({ label, value, onChange, type = "text", placeholder = "" }) => (
@@ -964,7 +959,7 @@ function ExperienceEditor({ data, onChange }) {
 }
 
 // ── Settings ──────────────────────────────────────────────────────────────────
-function SettingsEditor({ defaultData, onReset }) {
+function SettingsEditor({ defaultData, onReset, adminHash, onHashChange }) {
   const [oldPwd, setOldPwd] = useState("");
   const [newPwd, setNewPwd] = useState("");
   const [confPwd, setConfPwd] = useState("");
@@ -973,7 +968,7 @@ function SettingsEditor({ defaultData, onReset }) {
   const [msg, setMsg] = useState(null);
 
   const changePassword = () => {
-    const storedHash = getStoredHash();
+    const storedHash = adminHash || DEFAULT_HASH;
     if (encodePass(oldPwd) !== storedHash) {
       setMsg({ type: "error", text: "Senha atual incorreta." });
       return;
@@ -986,9 +981,9 @@ function SettingsEditor({ defaultData, onReset }) {
       setMsg({ type: "error", text: "As senhas não coincidem." });
       return;
     }
-    localStorage.setItem(HASH_KEY, encodePass(newPwd));
+    onHashChange(encodePass(newPwd));
     setOldPwd(""); setNewPwd(""); setConfPwd("");
-    setMsg({ type: "success", text: "Senha alterada com sucesso!" });
+    setMsg({ type: "success", text: "Senha alterada com sucesso! Salva no Supabase." });
     setTimeout(() => setMsg(null), 3000);
   };
 
@@ -1040,7 +1035,7 @@ function SettingsEditor({ defaultData, onReset }) {
 }
 
 // ─── Password Gate ────────────────────────────────────────────────────────────
-function PasswordGate({ onAuth }) {
+function PasswordGate({ onAuth, adminHash }) {
   const [pwd, setPwd] = useState("");
   const [show, setShow] = useState(false);
   const [error, setError] = useState(false);
@@ -1048,7 +1043,7 @@ function PasswordGate({ onAuth }) {
 
   const submit = (e) => {
     e.preventDefault();
-    const storedHash = getStoredHash();
+    const storedHash = adminHash || DEFAULT_HASH;
     if (encodePass(pwd) === storedHash) {
       onAuth();
     } else {
@@ -1127,7 +1122,7 @@ const TABS = [
   { id: "settings", label: "Config.", icon: Settings },
 ];
 
-export default function AdminPanel({ data, defaultData, onSave, onClose }) {
+export default function AdminPanel({ data, defaultData, onSave, onClose, adminHash, onHashChange }) {
   const [authenticated, setAuthenticated] = useState(false);
   const [activeTab, setActiveTab] = useState("personal");
   const [localData, setLocalData] = useState(data);
@@ -1213,7 +1208,7 @@ export default function AdminPanel({ data, defaultData, onSave, onClose }) {
 
         {!authenticated ? (
           <div className="flex-1 p-8">
-            <PasswordGate onAuth={() => setAuthenticated(true)} />
+            <PasswordGate onAuth={() => setAuthenticated(true)} adminHash={adminHash} />
           </div>
         ) : (
           <div className="flex flex-1 overflow-hidden">
@@ -1280,7 +1275,7 @@ export default function AdminPanel({ data, defaultData, onSave, onClose }) {
                 <ExperienceEditor data={localData} onChange={setLocalData} />
               )}
               {activeTab === "settings" && (
-                <SettingsEditor defaultData={defaultData} onReset={handleReset} />
+                <SettingsEditor defaultData={defaultData} onReset={handleReset} adminHash={adminHash} onHashChange={onHashChange} />
               )}
             </div>
           </div>
