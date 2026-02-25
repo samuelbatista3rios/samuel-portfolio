@@ -1132,19 +1132,24 @@ export default function AdminPanel({ data, defaultData, onSave, onClose }) {
   const [activeTab, setActiveTab] = useState("personal");
   const [localData, setLocalData] = useState(data);
   const [saved, setSaved] = useState(false);
+  const [saving, setSaving] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const handleSave = () => {
-    onSave(localData);
+  const handleSave = async () => {
+    setSaving(true);
+    await onSave(localData);
+    setSaving(false);
     setSaved(true);
-    setTimeout(() => setSaved(false), 2000);
+    setTimeout(() => setSaved(false), 2500);
   };
 
-  const handleReset = () => {
+  const handleReset = async () => {
+    setSaving(true);
     setLocalData(defaultData);
-    onSave(defaultData);
+    await onSave(defaultData);
+    setSaving(false);
     setSaved(true);
-    setTimeout(() => setSaved(false), 2000);
+    setTimeout(() => setSaved(false), 2500);
   };
 
   return (
@@ -1177,14 +1182,24 @@ export default function AdminPanel({ data, defaultData, onSave, onClose }) {
             {authenticated && (
               <button
                 onClick={handleSave}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition ${
+                disabled={saving}
+                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition disabled:opacity-60 disabled:cursor-not-allowed ${
                   saved
                     ? "bg-emerald-500/10 text-emerald-400"
                     : "bg-emerald-500 hover:bg-emerald-600 text-white shadow-sm shadow-emerald-500/20"
                 }`}
               >
-                {saved ? <Check className="w-4 h-4" /> : <Save className="w-4 h-4" />}
-                {saved ? "Salvo!" : "Salvar"}
+                {saving ? (
+                  <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"/>
+                  </svg>
+                ) : saved ? (
+                  <Check className="w-4 h-4" />
+                ) : (
+                  <Save className="w-4 h-4" />
+                )}
+                {saving ? "Salvando..." : saved ? "Salvo!" : "Salvar"}
               </button>
             )}
             <button

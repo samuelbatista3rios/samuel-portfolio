@@ -7,6 +7,7 @@ import {
   ChevronUp, MoveRight,
 } from "lucide-react";
 import AdminPanel from "./components/AdminPanel";
+import { loadPortfolioData, savePortfolioData } from "./lib/supabase";
  
 // ─── keys ─────────────────────────────────────────────────────────────────────
 const LANG_KEY  = "samuel.lang";
@@ -1201,11 +1202,22 @@ export default function App() {
     // theme
     const savedTheme = localStorage.getItem(THEME_KEY);
     if (savedTheme === "dark" || savedTheme === "light") setTheme(savedTheme);
-    // data
-    try {
-      const saved = localStorage.getItem(DATA_KEY);
-      if (saved) setData(JSON.parse(saved));
-    } catch {}
+    // data — Supabase first, fallback to localStorage
+    (async () => {
+      const remoteData = await loadPortfolioData();
+      if (remoteData && remoteData.personal) {
+        setData(remoteData);
+        localStorage.setItem(DATA_KEY, JSON.stringify(remoteData));
+      } else {
+        try {
+          const saved = localStorage.getItem(DATA_KEY);
+          if (saved) {
+            const parsed = JSON.parse(saved);
+            if (parsed && parsed.personal) setData(parsed);
+          }
+        } catch {}
+      }
+    })();
     // ?admin URL param
     if (window.location.search.includes("admin")) setShowAdmin(true);
   }, []);
@@ -1239,13 +1251,23 @@ export default function App() {
     }
   }, []);
  
-  const saveData = useCallback((newData) => {
+  const saveData = useCallback(async (newData) => {
     setData(newData);
     localStorage.setItem(DATA_KEY, JSON.stringify(newData));
+    await savePortfolioData(newData);
   }, []);
  
   const t = i18n[lang];
- 
+
+  // Garante que subcomponentes nunca recebem undefined
+  const safeData = {
+    personal:    data.personal    ?? DEFAULT_DATA.personal,
+    tech:        data.tech        ?? DEFAULT_DATA.tech,
+    services:    data.services    ?? DEFAULT_DATA.services,
+    projects:    data.projects    ?? DEFAULT_DATA.projects,
+    experiences: data.experiences ?? DEFAULT_DATA.experiences,
+  };
+
   return (
     <div className="w-full min-h-screen bg-neutral-50 dark:bg-[#030303] text-neutral-900 dark:text-neutral-100 antialiased transition-colors duration-300">
       {/* Ambient blobs */}
@@ -1276,18 +1298,18 @@ export default function App() {
           theme={theme}
           onThemeToggle={toggleTheme}
           onLangGate={() => setShowLang(true)}
-          personal={data.personal}
+          personal={safeData.personal}
         />
  
         <main>
-          <Hero        lang={lang} t={t} personal={data.personal} />
-          <About       lang={lang} t={t} personal={data.personal} />
-          <Stack       lang={lang} t={t} tech={data.tech} />
-          <Services    lang={lang} t={t} services={data.services} />
-          <Projects    lang={lang} t={t} projects={data.projects} />
-          <Experience  lang={lang} t={t} experiences={data.experiences} />
-          <CTA         lang={lang} t={t} personal={data.personal} />
-          <Contact     lang={lang} t={t} personal={data.personal} />
+          <Hero        lang={lang} t={t} personal={safeData.personal} />
+          <About       lang={lang} t={t} personal={safeData.personal} />
+          <Stack       lang={lang} t={t} tech={safeData.tech} />
+          <Services    lang={lang} t={t} services={safeData.services} />
+          <Projects    lang={lang} t={t} projects={safeData.projects} />
+          <Experience  lang={lang} t={t} experiences={safeData.experiences} />
+          <CTA         lang={lang} t={t} personal={safeData.personal} />
+          <Contact     lang={lang} t={t} personal={safeData.personal} />
         </main>
  
         <Footer lang={lang} t={t} onAdminTrigger={handleFooterClick} />
