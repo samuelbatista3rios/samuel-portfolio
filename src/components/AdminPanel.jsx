@@ -1130,9 +1130,16 @@ export default function AdminPanel({ data, defaultData, onSave, onClose, adminHa
   const [saving, setSaving] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
+  // Sincroniza localData quando os dados do Supabase carregam depois da montagem
+  React.useEffect(() => {
+    if (!authenticated) setLocalData(data);
+  }, [data]);
+
   const handleSave = async () => {
     setSaving(true);
-    await onSave(localData);
+    // Preserva __adminHash para não sobrescrever a senha no Supabase
+    const dataToSave = adminHash ? { ...localData, __adminHash: adminHash } : localData;
+    await onSave(dataToSave);
     setSaving(false);
     setSaved(true);
     setTimeout(() => setSaved(false), 2500);
@@ -1141,7 +1148,9 @@ export default function AdminPanel({ data, defaultData, onSave, onClose, adminHa
   const handleReset = async () => {
     setSaving(true);
     setLocalData(defaultData);
-    await onSave(defaultData);
+    // Preserva __adminHash ao resetar dados
+    const dataToReset = adminHash ? { ...defaultData, __adminHash: adminHash } : defaultData;
+    await onSave(dataToReset);
     setSaving(false);
     setSaved(true);
     setTimeout(() => setSaved(false), 2500);
