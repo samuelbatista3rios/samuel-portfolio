@@ -871,6 +871,21 @@ function Projects({ lang, t, projects }) {
 // ──────────────────────────────────────────────────────────────────────────────
 function Experience({ lang, t, experiences }) {
   const [open, setOpen] = useState(() => new Set([experiences[0]?.id]));
+
+  // Quando o Supabase carrega e troca o array, garante que o primeiro fica aberto
+  useEffect(() => {
+    if (experiences[0]?.id) {
+      setOpen((s) => {
+        // só força se nenhum estiver aberto (evita fechar o que o usuário abriu)
+        if (s.size === 0) return new Set([experiences[0].id]);
+        // se o ID do primeiro mudou (Supabase carregou), atualiza
+        const firstId = experiences[0].id;
+        if (!s.has(firstId)) return new Set([firstId]);
+        return s;
+      });
+    }
+  }, [experiences[0]?.id]);
+
   const toggle = (id) =>
     setOpen((s) => {
       const n = new Set(s);
@@ -894,23 +909,35 @@ function Experience({ lang, t, experiences }) {
         <div className="space-y-3">
           {experiences.map((exp, i) => (
             <motion.div key={exp.id} {...fadeUpD(i * 0.05)} className="relative">
-              {/* Timeline dot */}
-              <div className="absolute -left-[25px] top-[18px] w-3 h-3 rounded-full border-2 border-emerald-500 bg-white dark:bg-neutral-900" />
+              {/* Timeline dot — maior e com glow no primeiro */}
+              <div className={`absolute top-[18px] rounded-full border-2 border-emerald-500 bg-white dark:bg-neutral-900 transition-all ${
+                i === 0 ? "-left-[27px] w-4 h-4 shadow-[0_0_8px_2px] shadow-emerald-500/40" : "-left-[25px] w-3 h-3"
+              }`} />
  
               <div
                 className={`rounded-2xl border overflow-hidden transition-all duration-300 ${
-                  open.has(exp.id)
-                    ? "border-emerald-500/25 dark:border-emerald-500/20 bg-white dark:bg-neutral-900/80"
-                    : "border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900/50"
+                  i === 0
+                    ? "border-emerald-500/40 dark:border-emerald-500/30 bg-white dark:bg-neutral-900/80 shadow-sm shadow-emerald-500/10"
+                    : open.has(exp.id)
+                      ? "border-emerald-500/25 dark:border-emerald-500/20 bg-white dark:bg-neutral-900/80"
+                      : "border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900/50"
                 }`}
               >
                 <button
                   onClick={() => toggle(exp.id)}
                   className="w-full text-left px-5 py-4 flex items-start justify-between gap-4 hover:bg-neutral-50 dark:hover:bg-neutral-800/30 transition"
                 >
-                  <div className="min-w-0">
-                    <div className="text-xs font-semibold text-emerald-500 dark:text-emerald-400 mb-0.5">
-                      {lang === "pt" ? exp.when_pt : exp.when_en}
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2 mb-0.5">
+                      <span className="text-xs font-semibold text-emerald-500 dark:text-emerald-400">
+                        {lang === "pt" ? exp.when_pt : exp.when_en}
+                      </span>
+                      {i === 0 && (
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-500 dark:text-emerald-400 border border-emerald-500/20">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                          {lang === "pt" ? "Atual" : "Current"}
+                        </span>
+                      )}
                     </div>
                     <div className="font-bold text-neutral-900 dark:text-white">
                       {lang === "pt" ? exp.role_pt : exp.role_en}
