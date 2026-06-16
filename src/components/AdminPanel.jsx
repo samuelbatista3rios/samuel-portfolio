@@ -18,6 +18,7 @@ import {
   ChevronUp,
   Layers,
   Wrench,
+  GraduationCap,
   Save,
   AlertCircle,
   KeyRound,
@@ -1112,6 +1113,193 @@ function PasswordGate({ onAuth, adminHash }) {
 }
 
 // ─── MAIN ADMIN PANEL ─────────────────────────────────────────────────────────
+// ─── Education editor (nested: entry → módulos → disciplinas → objetivos) ──────
+function EduDisciplineEditor({ discipline, onChange, onRemove }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="rounded-lg bg-neutral-50 dark:bg-neutral-900/60 border border-neutral-200 dark:border-neutral-700/60 overflow-hidden">
+      <div className="flex items-center gap-2 px-3 py-2">
+        <button
+          type="button"
+          onClick={() => setOpen((o) => !o)}
+          className="flex-1 flex items-center gap-2 text-left text-sm font-medium text-neutral-800 dark:text-neutral-200 min-w-0"
+        >
+          {open ? <ChevronUp className="w-3.5 h-3.5 flex-shrink-0" /> : <ChevronDown className="w-3.5 h-3.5 flex-shrink-0" />}
+          <span className="truncate">{discipline.name_pt || "Nova disciplina"}</span>
+        </button>
+        <button
+          type="button"
+          onClick={onRemove}
+          className="p-1.5 rounded-lg text-red-400 hover:bg-red-500/10 transition flex-shrink-0"
+        >
+          <Trash2 className="w-3.5 h-3.5" />
+        </button>
+      </div>
+      {open && (
+        <div className="px-3 pb-3 pt-1 space-y-3 border-t border-neutral-200 dark:border-neutral-700/60">
+          <Input label="Nome (PT)" value={discipline.name_pt || ""} onChange={(v) => onChange({ ...discipline, name_pt: v })} />
+          <Input label="Nome (EN)" value={discipline.name_en || ""} onChange={(v) => onChange({ ...discipline, name_en: v })} />
+          <StringListEditor label="Objetivos (PT)" items={discipline.goals_pt || []} onChange={(v) => onChange({ ...discipline, goals_pt: v })} />
+          <StringListEditor label="Objetivos (EN)" items={discipline.goals_en || []} onChange={(v) => onChange({ ...discipline, goals_en: v })} />
+        </div>
+      )}
+    </div>
+  );
+}
+
+function EduModuleEditor({ module, onChange, onRemove }) {
+  const [open, setOpen] = useState(false);
+  const disciplines = module.disciplines || [];
+  const setDisciplines = (d) => onChange({ ...module, disciplines: d });
+
+  return (
+    <div className="rounded-xl bg-neutral-100/80 dark:bg-neutral-800/40 border border-neutral-200 dark:border-neutral-700/60 overflow-hidden">
+      <div className="flex items-center gap-2 px-3 py-2.5">
+        <button
+          type="button"
+          onClick={() => setOpen((o) => !o)}
+          className="flex-1 flex items-center gap-2 text-left text-sm font-semibold text-neutral-900 dark:text-neutral-100 min-w-0"
+        >
+          {open ? <ChevronUp className="w-4 h-4 flex-shrink-0" /> : <ChevronDown className="w-4 h-4 flex-shrink-0" />}
+          <span className="truncate">{module.title_pt || "Novo módulo"}</span>
+          <span className="text-xs font-normal text-neutral-400 flex-shrink-0">({disciplines.length})</span>
+        </button>
+        <button
+          type="button"
+          onClick={onRemove}
+          className="p-1.5 rounded-lg text-red-400 hover:bg-red-500/10 transition flex-shrink-0"
+        >
+          <Trash2 className="w-4 h-4" />
+        </button>
+      </div>
+      {open && (
+        <div className="px-3 pb-3 pt-1 space-y-3 border-t border-neutral-200 dark:border-neutral-700/60">
+          <Input label="Título do módulo (PT)" value={module.title_pt || ""} onChange={(v) => onChange({ ...module, title_pt: v })} />
+          <Input label="Título do módulo (EN)" value={module.title_en || ""} onChange={(v) => onChange({ ...module, title_en: v })} />
+
+          <div className="space-y-2">
+            <label className="text-xs font-medium text-neutral-400">Disciplinas</label>
+            {disciplines.map((d, idx) => (
+              <EduDisciplineEditor
+                key={d.id ?? idx}
+                discipline={d}
+                onChange={(nd) => setDisciplines(disciplines.map((it, i) => (i === idx ? nd : it)))}
+                onRemove={() => setDisciplines(disciplines.filter((_, i) => i !== idx))}
+              />
+            ))}
+            <Btn
+              variant="secondary"
+              onClick={() =>
+                setDisciplines([
+                  ...disciplines,
+                  { id: Date.now(), name_pt: "", name_en: "", goals_pt: [], goals_en: [] },
+                ])
+              }
+            >
+              <Plus className="w-4 h-4" /> Disciplina
+            </Btn>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function EducationEditor({ data, defaultData, onChange }) {
+  // Se ainda não houver formação salva, usa o padrão como ponto de partida
+  const items = data.education ?? defaultData?.education ?? [];
+  const setItems = (education) => onChange({ ...data, education });
+
+  const updateEntry = (idx, patch) =>
+    setItems(items.map((e, i) => (i === idx ? { ...e, ...patch } : e)));
+
+  const addEntry = () =>
+    setItems([
+      ...items,
+      {
+        id: Date.now(),
+        degree_pt: "", degree_en: "",
+        org: "",
+        when_pt: "", when_en: "",
+        summary_pt: "", summary_en: "",
+        modules: [],
+      },
+    ]);
+
+  const removeEntry = (idx) => setItems(items.filter((_, i) => i !== idx));
+
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center justify-between">
+        <h3 className="font-semibold text-neutral-900 dark:text-neutral-100">Formação</h3>
+        <Btn onClick={addEntry} variant="primary">
+          <Plus className="w-4 h-4" /> Adicionar
+        </Btn>
+      </div>
+
+      <div className="space-y-5">
+        {items.map((ed, idx) => {
+          const modules = ed.modules || [];
+          const setModules = (m) => updateEntry(idx, { modules: m });
+          return (
+            <div
+              key={ed.id ?? idx}
+              className="rounded-2xl border border-neutral-200 dark:border-neutral-700/60 bg-white dark:bg-neutral-900/40 p-4 space-y-3"
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-semibold text-neutral-800 dark:text-neutral-200 truncate">
+                  {ed.degree_pt || "Nova formação"}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => removeEntry(idx)}
+                  className="p-1.5 rounded-lg text-red-400 hover:bg-red-500/10 transition flex-shrink-0"
+                >
+                  <Trash2 className="w-4 h-4" />
+                </button>
+              </div>
+
+              <Input label="Título / Grau (PT)" value={ed.degree_pt || ""} onChange={(v) => updateEntry(idx, { degree_pt: v })} />
+              <Input label="Título / Grau (EN)" value={ed.degree_en || ""} onChange={(v) => updateEntry(idx, { degree_en: v })} />
+              <Input label="Instituição" value={ed.org || ""} onChange={(v) => updateEntry(idx, { org: v })} />
+              <div className="grid grid-cols-2 gap-3">
+                <Input label="Período (PT)" value={ed.when_pt || ""} onChange={(v) => updateEntry(idx, { when_pt: v })} />
+                <Input label="Período (EN)" value={ed.when_en || ""} onChange={(v) => updateEntry(idx, { when_en: v })} />
+              </div>
+              <Textarea label="Resumo (PT)" rows={3} value={ed.summary_pt || ""} onChange={(v) => updateEntry(idx, { summary_pt: v })} />
+              <Textarea label="Resumo (EN)" rows={3} value={ed.summary_en || ""} onChange={(v) => updateEntry(idx, { summary_en: v })} />
+
+              <div className="space-y-2 pt-1">
+                <label className="text-xs font-medium text-neutral-400">Módulos</label>
+                {modules.map((m, mIdx) => (
+                  <EduModuleEditor
+                    key={m.id ?? mIdx}
+                    module={m}
+                    onChange={(nm) => setModules(modules.map((it, i) => (i === mIdx ? nm : it)))}
+                    onRemove={() => setModules(modules.filter((_, i) => i !== mIdx))}
+                  />
+                ))}
+                <Btn
+                  variant="secondary"
+                  onClick={() => setModules([...modules, { id: Date.now(), title_pt: "", title_en: "", disciplines: [] }])}
+                >
+                  <Plus className="w-4 h-4" /> Módulo
+                </Btn>
+              </div>
+            </div>
+          );
+        })}
+
+        {items.length === 0 && (
+          <p className="text-sm text-neutral-400 text-center py-6">
+            Nenhuma formação cadastrada. Clique em “Adicionar”.
+          </p>
+        )}
+      </div>
+    </div>
+  );
+}
+
 const TABS = [
   { id: "personal", label: "Pessoal", icon: User },
   { id: "about", label: "Sobre", icon: Code2 },
@@ -1119,6 +1307,7 @@ const TABS = [
   { id: "services", label: "Serviços", icon: Wrench },
   { id: "projects", label: "Projetos", icon: FolderOpen },
   { id: "experience", label: "Experiência", icon: Briefcase },
+  { id: "education", label: "Formação", icon: GraduationCap },
   { id: "settings", label: "Config.", icon: Settings },
 ];
 
@@ -1282,6 +1471,9 @@ export default function AdminPanel({ data, defaultData, onSave, onClose, adminHa
               )}
               {activeTab === "experience" && (
                 <ExperienceEditor data={localData} onChange={setLocalData} />
+              )}
+              {activeTab === "education" && (
+                <EducationEditor data={localData} defaultData={defaultData} onChange={setLocalData} />
               )}
               {activeTab === "settings" && (
                 <SettingsEditor defaultData={defaultData} onReset={handleReset} adminHash={adminHash} onHashChange={onHashChange} />

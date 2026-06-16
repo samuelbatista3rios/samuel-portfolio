@@ -1,0 +1,95 @@
+/* Samuel Fonseca — CV print stylesheet (A4, print-to-PDF via Chrome) */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --ink: #1a1a1a;
+  --muted: #555;
+  --soft: #777;
+  --accent: #0f9d6e;
+  --rule: #d9d9d9;
+}
+
+@page { size: A4; margin: 14mm 15mm; }
+
+html, body {
+  font-family: "Calibri", "Segoe UI", Arial, sans-serif;
+  color: var(--ink);
+  font-size: 10.2px;
+  line-height: 1.42;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.name {
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: .2px;
+}
+.title {
+  font-size: 11px;
+  color: var(--accent);
+  font-weight: 600;
+  margin-top: 2px;
+}
+.contact {
+  font-size: 9.4px;
+  color: var(--muted);
+  margin-top: 5px;
+}
+.contact a { color: var(--muted); text-decoration: none; }
+
+h2.section {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  color: var(--accent);
+  text-transform: uppercase;
+  border-bottom: 1.4px solid var(--rule);
+  padding-bottom: 3px;
+  margin: 13px 0 7px;
+}
+
+p.summary { color: var(--muted); text-align: justify; }
+
+.job { margin-bottom: 8px; }
+.job-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+}
+.job-role { font-weight: 700; font-size: 10.6px; }
+.job-date { color: var(--soft); font-size: 9.2px; white-space: nowrap; }
+.job-org { color: var(--accent); font-size: 9.6px; font-weight: 600; margin: 1px 0 3px; }
+ul.bullets { list-style: none; }
+ul.bullets li {
+  position: relative;
+  padding-left: 11px;
+  color: var(--muted);
+  margin-bottom: 1.5px;
+}
+ul.bullets li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 5px;
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.project { margin-bottom: 6px; }
+.project .p-title { font-weight: 700; }
+.project .p-stack { color: var(--soft); font-weight: 400; }
+.project .p-desc { color: var(--muted); }
+
+table.skills { width: 100%; border-collapse: collapse; }
+table.skills td { vertical-align: top; padding: 1.5px 0; }
+table.skills td.k { width: 120px; font-weight: 700; color: var(--ink); }
+table.skills td.v { color: var(--muted); }
+
+.edu-line, .lang-line { color: var(--muted); margin-bottom: 2px; }
+.edu-line b { color: var(--ink); }
+.edu-line .cur { color: var(--accent); font-weight: 600; }
+
+.lang-grid { display: flex; gap: 40px; }
+.lang-grid div b { color: var(--ink); }

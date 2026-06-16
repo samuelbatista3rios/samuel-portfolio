@@ -4,7 +4,7 @@ import {
   ArrowRight, Sparkles, Github, Linkedin, Mail, Phone,
   MapPin, ExternalLink, Download, Server, Laptop, Cpu,
   Database, Rocket, Globe, Sun, Moon, ChevronDown,
-  ChevronUp, MoveRight,
+  ChevronUp, MoveRight, GraduationCap, BookOpen, Brain,
 } from "lucide-react";
 import AdminPanel from "./components/AdminPanel";
 import { loadPortfolioData, savePortfolioData } from "./lib/supabase";
@@ -41,7 +41,7 @@ const DEFAULT_DATA = {
       "DB: PostgreSQL, MySQL, MongoDB",
       "Arquitetura: microsserviços, REST/GraphQL",
       "Infra: Docker, AWS, CI/CD, Kubernetes",
-      "Automação: Selenium, Puppeteer",
+      "DevOps & Cloud-Native com IA integrada",
       "IA generativa aplicada ao produto",
       "Projetos no Fluig (TOTVS)",
     ],
@@ -51,7 +51,7 @@ const DEFAULT_DATA = {
       "DB: PostgreSQL, MySQL, MongoDB",
       "Architecture: microservices, REST/GraphQL",
       "Infra: Docker, AWS, CI/CD, Kubernetes",
-      "Automation: Selenium, Puppeteer",
+      "DevOps & Cloud-Native with integrated AI",
       "Applied Generative AI",
       "Projects on Fluig (TOTVS)",
     ],
@@ -296,6 +296,379 @@ const DEFAULT_DATA = {
       ],
     },
   ],
+  education: [
+    {
+      id: 1,
+      degree_pt: "Pós-graduação · DevOps & Engenharia de Plataforma Cloud-Native",
+      degree_en: "Postgraduate · DevOps & Cloud-Native Platform Engineering",
+      org: "PUC Minas Virtual",
+      when_pt: "Em andamento", when_en: "In progress",
+      summary_pt:
+        "Especialização que integra IA em todas as disciplinas como apoio para acelerar atividades práticas, aprofundar conhecimentos e fortalecer o vínculo entre conhecimento técnico, objetivos de negócio e competências comportamentais.",
+      summary_en:
+        "Specialization that integrates AI across every course as support to accelerate hands-on work, deepen knowledge and strengthen the link between technical skills, business goals and behavioral competencies.",
+      modules: [
+        {
+          id: 1,
+          title_pt: "Módulo 1 · Fundamentos e Arquitetura",
+          title_en: "Module 1 · Fundamentals & Architecture",
+          disciplines: [
+            {
+              id: 1,
+              name_pt: "Fundamentos de DevOps e Transformação Digital",
+              name_en: "DevOps Fundamentals & Digital Transformation",
+              goals_pt: [
+                "Compreender os fundamentos da transformação digital e seu impacto nas organizações",
+                "Relacionar os princípios do DevOps com Agile, Lean Thinking e frameworks como DASA",
+                "Implantar a cultura DevOps com foco em colaboração, autonomia e responsabilidade compartilhada",
+                "Identificar e integrar ferramentas da cadeia DevOps para automação de processos",
+                "Reconhecer a evolução para EmergingOps (AIOps, GitOps, PlatformOps e DevSecOps)",
+                "Aplicar IA e metodologias de Foresight e Forecasting para análise de maturidade DevOps e tendências",
+              ],
+              goals_en: [
+                "Understand the fundamentals of digital transformation and its impact on organizations",
+                "Relate DevOps principles to Agile, Lean Thinking and frameworks such as DASA",
+                "Implement a DevOps culture focused on collaboration, autonomy and shared responsibility",
+                "Identify and integrate DevOps toolchains for process automation",
+                "Recognize the evolution toward EmergingOps (AIOps, GitOps, PlatformOps and DevSecOps)",
+                "Apply AI and Foresight/Forecasting methods to assess DevOps maturity and tech trends",
+              ],
+            },
+            {
+              id: 2,
+              name_pt: "Arquitetura Cloud-Native e Estratégias Híbridas",
+              name_en: "Cloud-Native Architecture & Hybrid Strategies",
+              goals_pt: [
+                "Compreender os modelos Cloud-First, Multicloud e Híbridos e suas implicações estratégicas",
+                "Projetar arquiteturas Cloud-Native com microsserviços, contêineres, Kubernetes e Serverless",
+                "Planejar e realizar o deploy de aplicações Cloud-Native e orientadas a eventos",
+                "Integrar práticas de segurança, logging e automação com CloudOps/NoOps",
+                "Aplicar IA para definição arquitetural e tomada de decisões em ambientes distribuídos",
+                "Executar projetos de migração e otimização para ambientes cloud-native e híbridos",
+              ],
+              goals_en: [
+                "Understand Cloud-First, Multicloud and Hybrid models and their strategic implications",
+                "Design Cloud-Native architectures with microservices, containers, Kubernetes and Serverless",
+                "Plan and deploy Cloud-Native and event-driven applications",
+                "Integrate security, logging and automation with CloudOps/NoOps",
+                "Apply AI to architectural definition and technical decisions in distributed environments",
+                "Run migration and optimization projects for cloud-native and hybrid environments",
+              ],
+            },
+            {
+              id: 3,
+              name_pt: "Infrastructure as Code e Automação",
+              name_en: "Infrastructure as Code & Automation",
+              goals_pt: [
+                "Compreender os fundamentos de IaC com foco em segurança, escalabilidade e disponibilidade",
+                "Utilizar ferramentas de IaC para provisionamento automatizado de infraestrutura",
+                "Construir pipelines de infraestrutura integrados a processos CI/CD",
+                "Realizar testes automatizados de infraestrutura (validação, linting e compliance)",
+                "Aplicar versionamento, gestão de estado e Policy as Code para governança",
+                "Utilizar IA para recomendação de configurações, detecção de falhas e otimização",
+              ],
+              goals_en: [
+                "Understand IaC fundamentals focused on security, scalability and availability",
+                "Use IaC tools for automated infrastructure provisioning",
+                "Build infrastructure pipelines integrated with CI/CD processes",
+                "Run automated infrastructure tests (validation, linting and compliance)",
+                "Apply versioning, state management and Policy as Code for governance",
+                "Use AI for configuration recommendations, failure detection and optimization",
+              ],
+            },
+          ],
+        },
+        {
+          id: 2,
+          title_pt: "Módulo 2 · Implementação, Automação e Engenharia de Plataforma",
+          title_en: "Module 2 · Implementation, Automation & Platform Engineering",
+          disciplines: [
+            {
+              id: 1,
+              name_pt: "Conteinerização e Orquestração com Kubernetes",
+              name_en: "Containerization & Orchestration with Kubernetes",
+              goals_pt: [
+                "Compreender a conteinerização com Docker e a otimização/segurança de imagens",
+                "Implementar e gerenciar aplicações no Kubernetes (pods, services e deployments)",
+                "Aplicar escalabilidade, alta disponibilidade e rolling updates",
+                "Configurar segurança, RBAC e proteção de pods em clusters",
+                "Utilizar operadores e CRDs para automação avançada de infraestrutura",
+                "Empregar IA para otimização de recursos, detecção de anomalias e capacity planning",
+              ],
+              goals_en: [
+                "Understand containerization with Docker and image optimization/security",
+                "Deploy and manage applications on Kubernetes (pods, services and deployments)",
+                "Apply scalability, high availability and rolling updates",
+                "Configure security, RBAC and pod protection in clusters",
+                "Use operators and CRDs for advanced infrastructure automation",
+                "Use AI for resource optimization, anomaly detection and capacity planning",
+              ],
+            },
+            {
+              id: 2,
+              name_pt: "CI/CD, Pipelines e Testes Automatizados",
+              name_en: "CI/CD, Pipelines & Automated Testing",
+              goals_pt: [
+                "Compreender os fundamentos, objetivos e desafios de CI/CD",
+                "Projetar pipelines completos (build, test, deploy e monitoramento)",
+                "Integrar segurança (SAST, DAST, varredura de dependências e conformidade)",
+                "Aplicar observabilidade em pipelines (métricas, logs e tracing)",
+                "Utilizar IA para análise de falhas, predição de gargalos e otimização de etapas",
+                "Construir pipelines CI/CD com integração a GitOps e práticas de confiabilidade",
+              ],
+              goals_en: [
+                "Understand CI/CD fundamentals, goals and challenges",
+                "Design complete pipelines (build, test, deploy and monitoring)",
+                "Integrate security (SAST, DAST, dependency scanning and compliance)",
+                "Apply observability in pipelines (metrics, logs and tracing)",
+                "Use AI for failure analysis, bottleneck prediction and stage optimization",
+                "Build CI/CD pipelines integrated with GitOps and reliability practices",
+              ],
+            },
+            {
+              id: 3,
+              name_pt: "Serverless Computing e Arquiteturas Event-Driven",
+              name_en: "Serverless Computing & Event-Driven Architectures",
+              goals_pt: [
+                "Compreender os fundamentos de Serverless e arquiteturas orientadas a eventos",
+                "Aplicar Event Sourcing e CQRS em microsserviços e sistemas reativos",
+                "Utilizar ferramentas de mensageria, streaming e integração em tempo real",
+                "Planejar e implantar aplicações Serverless e Event-Driven em cloud-native",
+                "Aplicar IA para otimização de recursos, análise de eventos e priorização dinâmica",
+                "Projetar uma aplicação event-driven com IA como projeto prático",
+              ],
+              goals_en: [
+                "Understand Serverless fundamentals and event-driven architectures",
+                "Apply Event Sourcing and CQRS in microservices and reactive systems",
+                "Use messaging, streaming and real-time integration tools",
+                "Plan and deploy Serverless and Event-Driven applications in cloud-native",
+                "Apply AI for resource optimization, event analysis and dynamic prioritization",
+                "Design an AI-powered event-driven application as a hands-on project",
+              ],
+            },
+            {
+              id: 4,
+              name_pt: "Engenharia de Plataforma com Backstage e Crossplane",
+              name_en: "Platform Engineering with Backstage & Crossplane",
+              goals_pt: [
+                "Compreender a Engenharia de Plataforma e sua relação com DevOps e SRE",
+                "Identificar necessidades de ferramentas para fluxos de trabalho de desenvolvimento",
+                "Construir e gerenciar uma Internal Developer Platform (IDP) com Backstage e Crossplane",
+                "Automatizar fluxos e gerenciar o ciclo de vida dos componentes da plataforma",
+                "Aplicar IA para recomendação de ferramentas, detecção de gargalos e métricas operacionais",
+                "Desenvolver uma IDP funcional como projeto prático",
+              ],
+              goals_en: [
+                "Understand Platform Engineering and its relation to DevOps and SRE",
+                "Identify tooling needs for development workflows",
+                "Build and manage an Internal Developer Platform (IDP) with Backstage and Crossplane",
+                "Automate workflows and manage the lifecycle of platform components",
+                "Apply AI for tool recommendation, bottleneck detection and operational metrics",
+                "Build a functional IDP as a hands-on project",
+              ],
+            },
+            {
+              id: 5,
+              name_pt: "MLOps e DataOps: Orquestração e Automação",
+              name_en: "MLOps & DataOps: Orchestration & Automation",
+              goals_pt: [
+                "Compreender os princípios de DataOps e MLOps na governança de dados e modelos",
+                "Implementar pipelines automatizados de ingestão, transformação e entrega de dados",
+                "Orquestrar o ciclo de vida de modelos com MLFlow, Kubeflow ou similares",
+                "Monitorar e versionar modelos em produção com práticas de CI/CD",
+                "Utilizar IA Generativa para geração de scripts, documentação e automação operacional",
+                "Desenvolver soluções completas integrando dados, modelos e infraestrutura",
+              ],
+              goals_en: [
+                "Understand DataOps and MLOps principles for data and model governance",
+                "Implement automated pipelines for data ingestion, transformation and delivery",
+                "Orchestrate the ML model lifecycle with MLFlow, Kubeflow or similar",
+                "Monitor and version models in production with CI/CD practices",
+                "Use Generative AI for scripts, documentation and operational automation",
+                "Build complete solutions integrating data, models and infrastructure",
+              ],
+            },
+          ],
+        },
+        {
+          id: 3,
+          title_pt: "Módulo 3 · Segurança, Monitoramento e Confiabilidade",
+          title_en: "Module 3 · Security, Monitoring & Reliability",
+          disciplines: [
+            {
+              id: 1,
+              name_pt: "DevSecOps: Segurança Integrada e Scanning",
+              name_en: "DevSecOps: Integrated Security & Scanning",
+              goals_pt: [
+                "Compreender os fundamentos de DevSecOps e aplicar o conceito de Security by Design",
+                "Implementar práticas de segurança contínua no ciclo de desenvolvimento (SDLC)",
+                "Integrar ferramentas como IAST, SAST, DAST e RASP em pipelines CI/CD",
+                "Aplicar métricas, logs e tracing para observabilidade de segurança",
+                "Utilizar IA para análise de vulnerabilidades e inteligência de ameaças",
+                "Construir pipelines DevSecOps em ambientes cloud-native",
+              ],
+              goals_en: [
+                "Understand DevSecOps fundamentals and apply Security by Design",
+                "Implement continuous security across the SDLC",
+                "Integrate IAST, SAST, DAST and RASP into CI/CD pipelines",
+                "Apply metrics, logs and tracing for security observability",
+                "Use AI for vulnerability analysis and threat intelligence",
+                "Build DevSecOps pipelines in cloud-native environments",
+              ],
+            },
+            {
+              id: 2,
+              name_pt: "Arquitetura de Cibersegurança e Zero Trust",
+              name_en: "Cybersecurity Architecture & Zero Trust",
+              goals_pt: [
+                "Compreender os princípios da arquitetura de segurança e o modelo Zero Trust",
+                "Aplicar estratégias de defesa em profundidade e segurança em camadas",
+                "Projetar arquiteturas seguras em nuvem com base nos frameworks CAF e WAF",
+                "Identificar e configurar soluções como NGFW, NIDPS, WAF, CASB e SASE",
+                "Integrar ferramentas de IA na arquitetura de segurança para automação e análise",
+                "Desenvolver projetos com estudos de caso em ambientes híbridos e cloud",
+              ],
+              goals_en: [
+                "Understand security architecture principles and the Zero Trust model",
+                "Apply defense-in-depth and layered security strategies",
+                "Design secure cloud architectures based on the CAF and WAF frameworks",
+                "Identify and configure NGFW, NIDPS, WAF, CASB and SASE solutions",
+                "Integrate AI tools into security architecture for automation and analysis",
+                "Develop case-study projects in hybrid and cloud environments",
+              ],
+            },
+            {
+              id: 3,
+              name_pt: "Site Reliability Engineering (SRE) e Chaos Engineering",
+              name_en: "Site Reliability Engineering (SRE) & Chaos Engineering",
+              goals_pt: [
+                "Compreender os princípios e práticas de SRE e sua integração com DevOps",
+                "Definir e aplicar métricas de confiabilidade como SLIs, SLOs, SLAs e error budgets",
+                "Identificar oportunidades de automação e eliminação de trabalho manual",
+                "Gerenciar artefatos e o ciclo de vida operacional com foco em resiliência",
+                "Aplicar Chaos Engineering para testar a robustez em ambientes simulados",
+                "Utilizar IA para antecipação de falhas, classificação de alertas e ações corretivas",
+                "Desenvolver uma solução prática de confiabilidade cloud-native como projeto final",
+              ],
+              goals_en: [
+                "Understand SRE principles and practices and their integration with DevOps",
+                "Define and apply reliability metrics such as SLIs, SLOs, SLAs and error budgets",
+                "Identify automation opportunities and eliminate manual toil",
+                "Manage artifacts and the operational lifecycle with a focus on resilience",
+                "Apply Chaos Engineering to test system robustness in simulated environments",
+                "Use AI for failure anticipation, alert classification and corrective actions",
+                "Build a hands-on cloud-native reliability solution as the final project",
+              ],
+            },
+            {
+              id: 4,
+              name_pt: "Monitoramento e Observabilidade",
+              name_en: "Monitoring & Observability",
+              goals_pt: [
+                "Diferenciar os conceitos de monitoramento e observabilidade e seus pilares fundamentais",
+                "Projetar arquiteturas observáveis em cloud-native e microsserviços",
+                "Utilizar OpenTelemetry, Observability Stacks e pipelines de observabilidade",
+                "Integrar SRE e estratégias de SLO/Error Budgeting na gestão de confiabilidade",
+                "Aplicar logs, métricas e tracing para alertas, dashboards e relatórios de performance",
+                "Utilizar IA para predição de falhas, análise de anomalias e resposta autônoma",
+              ],
+              goals_en: [
+                "Differentiate monitoring and observability and apply their core pillars",
+                "Design observable architectures in cloud-native and microservices environments",
+                "Use OpenTelemetry, Observability Stacks and observability pipelines",
+                "Integrate SRE and SLO/Error Budgeting strategies into reliability management",
+                "Apply logs, metrics and tracing for alerts, dashboards and performance reports",
+                "Use AI for failure prediction, anomaly analysis and autonomous response",
+              ],
+            },
+          ],
+        },
+        {
+          id: 4,
+          title_pt: "Módulo 4 · IA, FinOps e Projeto Prático",
+          title_en: "Module 4 · AI, FinOps & Capstone Project",
+          disciplines: [
+            {
+              id: 1,
+              name_pt: "AIOps: IA para Automação e Observabilidade",
+              name_en: "AIOps: AI for Automation & Observability",
+              goals_pt: [
+                "Compreender os fundamentos de AIOps e seu papel na modernização das operações de TI",
+                "Aplicar IA para automação inteligente, detecção de anomalias e resposta autônoma a incidentes",
+                "Utilizar ferramentas como Prometheus, Grafana, ELK Stack, OpenTelemetry e Dynatrace",
+                "Implementar coleta, enriquecimento e análise de dados operacionais em tempo real",
+                "Desenvolver modelos de automação com IA para escalonamento e otimização de recursos",
+                "Integrar AIOps com práticas de SRE, DevSecOps e FinOps em soluções cloud-native",
+              ],
+              goals_en: [
+                "Understand AIOps fundamentals and its role in modernizing IT operations",
+                "Apply AI for intelligent automation, anomaly detection and autonomous incident response",
+                "Use tools such as Prometheus, Grafana, ELK Stack, OpenTelemetry and Dynatrace",
+                "Implement collection, enrichment and analysis of operational data in real time",
+                "Build AI automation models for scaling and resource optimization",
+                "Integrate AIOps with SRE, DevSecOps and FinOps practices in cloud-native solutions",
+              ],
+            },
+            {
+              id: 2,
+              name_pt: "FinOps e Cloud Economics",
+              name_en: "FinOps & Cloud Economics",
+              goals_pt: [
+                "Compreender os fundamentos de FinOps e os modelos de precificação em nuvem aplicados a IA (pay-as-you-go, reserved, spot e serverless)",
+                "Implementar estratégias de gestão de custos por projeto, serviço e unidade de negócio com accountability",
+                "Utilizar automação, observabilidade e monitoramento para controle de gastos e alertas orçamentários",
+                "Aplicar IA para análise de consumo, otimização de recursos, detecção de anomalias e recomendações financeiras",
+                "Desenvolver planos de otimização financeira com base em KPIs e práticas de Cloud Economics",
+              ],
+              goals_en: [
+                "Understand FinOps fundamentals and cloud pricing models applied to AI (pay-as-you-go, reserved, spot and serverless)",
+                "Implement cost management strategies per project, service and business unit with accountability",
+                "Use automation, observability and monitoring for spend control and budget alerts",
+                "Apply AI for consumption analysis, resource optimization, anomaly detection and financial recommendations",
+                "Develop financial optimization plans based on KPIs and Cloud Economics practices",
+              ],
+            },
+            {
+              id: 3,
+              name_pt: "Projeto Prático: Plataforma de Entrega Contínua com IA",
+              name_en: "Capstone: AI-Powered Continuous Delivery Platform",
+              goals_pt: [
+                "Planejar e arquitetar uma plataforma de entrega contínua moderna em ambiente cloud-native",
+                "Implementar pipelines CI/CD com versionamento, build, testes automatizados e deploy",
+                "Integrar automação de infraestrutura e observabilidade distribuída na plataforma",
+                "Aplicar conceitos de SRE para garantir resiliência e desempenho",
+                "Incorporar práticas de DevSecOps e FinOps na gestão da plataforma",
+                "Apresentar os resultados do projeto",
+              ],
+              goals_en: [
+                "Plan and architect a modern continuous delivery platform in a cloud-native environment",
+                "Implement CI/CD pipelines with versioning, build, automated tests and deploy",
+                "Integrate infrastructure automation and distributed observability into the platform",
+                "Apply SRE concepts to ensure resilience and performance",
+                "Incorporate DevSecOps and FinOps practices into platform management",
+                "Present the project results",
+              ],
+            },
+            {
+              id: 4,
+              name_pt: "Humanidades (disciplina bônus)",
+              name_en: "Humanities (bonus course)",
+              goals_pt: [
+                "Refletir sobre o papel da ética e da espiritualidade no contexto científico e tecnológico",
+                "Avaliar os impactos sociais e humanistas do uso de dados e tecnologia",
+                "Desenvolver uma ética profissional sólida em ambientes de trabalho colaborativos e tecnológicos",
+              ],
+              goals_en: [
+                "Reflect on the role of ethics and spirituality in the scientific and technological context",
+                "Assess the social and humanistic impacts of using data and technology",
+                "Develop solid professional ethics in collaborative and technological work environments",
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
 };
  
 // ─── i18n (static UI labels) ──────────────────────────────────────────────────
@@ -303,11 +676,11 @@ const i18n = {
   pt: {
     nav: {
       sobre: "Sobre", stack: "Stack", projetos: "Projetos",
-      servicos: "Serviços", experiencia: "Experiência", contato: "Contato",
+      servicos: "Serviços", experiencia: "Experiência", formacao: "Formação", contato: "Contato",
     },
     navIds: {
       sobre: "sobre", stack: "stack", projetos: "projetos",
-      servicos: "servicos", experiencia: "experiencia", contato: "contato",
+      servicos: "servicos", experiencia: "experiencia", formacao: "formacao", contato: "contato",
     },
     hero: {
       badge: "Disponível para projetos",
@@ -328,6 +701,12 @@ const i18n = {
       cta: "Precisa de algo parecido?", view: "Ver", code: "Código",
     },
     exp: { title: "Experiência" },
+    edu: {
+      kicker: "Formação",
+      title: "Formação acadêmica",
+      desc: "Especialização contínua em DevOps, Cloud-Native e IA.",
+      aiBadge: "IA integrada em todas as disciplinas",
+    },
     cta: {
       title: "Tem um projeto em mente?",
       desc: "Bora tirar do papel com qualidade de engenharia e foco em negócio.",
@@ -348,11 +727,11 @@ const i18n = {
   en: {
     nav: {
       sobre: "About", stack: "Stack", projetos: "Projects",
-      servicos: "Services", experiencia: "Experience", contato: "Contact",
+      servicos: "Services", experiencia: "Experience", formacao: "Education", contato: "Contact",
     },
     navIds: {
       sobre: "sobre", stack: "stack", projetos: "projetos",
-      servicos: "servicos", experiencia: "experiencia", contato: "contato",
+      servicos: "servicos", experiencia: "experiencia", formacao: "formacao", contato: "contato",
     },
     hero: {
       badge: "Available for projects",
@@ -373,6 +752,12 @@ const i18n = {
       cta: "Need something similar?", view: "View", code: "Code",
     },
     exp: { title: "Experience" },
+    edu: {
+      kicker: "Education",
+      title: "Academic background",
+      desc: "Continuous specialization in DevOps, Cloud-Native and AI.",
+      aiBadge: "AI integrated across every course",
+    },
     cta: {
       title: "Got a project in mind?",
       desc: "Let's ship it with solid engineering and business focus.",
@@ -983,6 +1368,131 @@ function Experience({ lang, t, experiences }) {
 }
  
 // ──────────────────────────────────────────────────────────────────────────────
+// EDUCATION
+// ──────────────────────────────────────────────────────────────────────────────
+function DisciplineItem({ lang, discipline }) {
+  const [open, setOpen] = useState(false);
+  const goals = lang === "pt" ? discipline.goals_pt : discipline.goals_en;
+
+  return (
+    <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900/50 overflow-hidden">
+      <button
+        onClick={() => setOpen((o) => !o)}
+        className="w-full text-left px-4 py-3 flex items-start justify-between gap-3 hover:bg-neutral-50 dark:hover:bg-neutral-800/40 transition"
+      >
+        <span className="flex items-start gap-2.5 min-w-0">
+          <BookOpen className="w-4 h-4 mt-0.5 text-emerald-500 dark:text-emerald-400 flex-shrink-0" />
+          <span className="text-sm font-medium text-neutral-800 dark:text-neutral-200 leading-snug">
+            {lang === "pt" ? discipline.name_pt : discipline.name_en}
+          </span>
+        </span>
+        <span className="flex-shrink-0 mt-0.5 text-neutral-400">
+          {open ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+        </span>
+      </button>
+
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.22, ease: "easeInOut" }}
+            className="overflow-hidden"
+          >
+            <ul className="px-4 pb-4 pt-1 space-y-1.5 border-t border-neutral-100 dark:border-neutral-800/60">
+              {goals.map((g, j) => (
+                <li
+                  key={j}
+                  className="flex items-start gap-2 text-xs text-neutral-600 dark:text-neutral-300 leading-relaxed"
+                >
+                  <span className="w-1 h-1 mt-1.5 rounded-full bg-emerald-400 flex-shrink-0" />
+                  {g}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+function Education({ lang, t, education }) {
+  if (!education?.length) return null;
+
+  return (
+    <Sec id="formacao" className="py-16">
+      <motion.div {...fadeUp} className="mb-10">
+        <span className="text-xs font-semibold uppercase tracking-widest text-emerald-500 dark:text-emerald-400">
+          {t.edu.kicker}
+        </span>
+        <h2 className="mt-2 text-3xl font-bold text-neutral-900 dark:text-white">{t.edu.title}</h2>
+        <p className="mt-2 text-neutral-500 dark:text-neutral-400">{t.edu.desc}</p>
+      </motion.div>
+
+      <div className="space-y-6">
+        {education.map((ed, i) => (
+          <motion.div
+            key={ed.id}
+            {...fadeUpD(i * 0.08)}
+            className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900/60 overflow-hidden"
+          >
+            <div className="p-6 md:p-8">
+              <div className="flex items-start gap-4">
+                <div className="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center flex-shrink-0">
+                  <GraduationCap className="w-5 h-5 text-emerald-500 dark:text-emerald-400" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="flex flex-wrap items-center gap-2 mb-1">
+                    <span className="text-xs font-semibold text-emerald-500 dark:text-emerald-400">
+                      {lang === "pt" ? ed.when_pt : ed.when_en}
+                    </span>
+                    <span className="text-xs text-neutral-400">· {ed.org}</span>
+                  </div>
+                  <h3 className="font-bold text-neutral-900 dark:text-white text-lg leading-snug">
+                    {lang === "pt" ? ed.degree_pt : ed.degree_en}
+                  </h3>
+                  <span className="mt-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-pink-500/10 text-pink-500 dark:text-pink-400 border border-pink-500/20">
+                    <Brain className="w-3 h-3" />
+                    {t.edu.aiBadge}
+                  </span>
+                  <p className="mt-4 text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed">
+                    {lang === "pt" ? ed.summary_pt : ed.summary_en}
+                  </p>
+                </div>
+              </div>
+
+              {/* Modules → disciplines (expansíveis) */}
+              <div className="mt-6 grid md:grid-cols-2 gap-4">
+                {(ed.modules || []).map((m) => (
+                  <div
+                    key={m.id}
+                    className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-800/30 p-4"
+                  >
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="w-2 h-2 rounded-full bg-emerald-400 flex-shrink-0" />
+                      <span className="text-sm font-bold text-neutral-900 dark:text-white leading-snug">
+                        {lang === "pt" ? m.title_pt : m.title_en}
+                      </span>
+                    </div>
+                    <div className="space-y-2">
+                      {(m.disciplines || []).map((d) => (
+                        <DisciplineItem key={d.id} lang={lang} discipline={d} />
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </Sec>
+  );
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
 // CTA BANNER
 // ──────────────────────────────────────────────────────────────────────────────
 function CTA({ lang, t, personal }) {
@@ -1300,6 +1810,7 @@ export default function App() {
     services:    data.services    ?? DEFAULT_DATA.services,
     projects:    data.projects    ?? DEFAULT_DATA.projects,
     experiences: data.experiences ?? DEFAULT_DATA.experiences,
+    education:   data.education   ?? DEFAULT_DATA.education,
   };
 
   return (
@@ -1344,6 +1855,7 @@ export default function App() {
           <Services    lang={lang} t={t} services={safeData.services} />
           <Projects    lang={lang} t={t} projects={safeData.projects} />
           <Experience  lang={lang} t={t} experiences={safeData.experiences} />
+          <Education   lang={lang} t={t} education={safeData.education} />
           <CTA         lang={lang} t={t} personal={safeData.personal} />
           <Contact     lang={lang} t={t} personal={safeData.personal} />
         </main>
